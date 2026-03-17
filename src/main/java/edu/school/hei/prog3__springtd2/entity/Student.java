@@ -9,7 +9,7 @@ import lombok.ToString;
 @ToString
 public class Student {
     private String reference;
-    private String fristName;
+    private String firstName;
     private String lastName;
     private Integer age;
 }
