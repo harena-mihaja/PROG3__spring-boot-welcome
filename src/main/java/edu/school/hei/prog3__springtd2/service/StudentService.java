@@ -1,6 +1,7 @@
 package edu.school.hei.prog3__springtd2.service;
 
 import edu.school.hei.prog3__springtd2.entity.Student;
+import edu.school.hei.prog3__springtd2.repository.StudentRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -8,8 +9,14 @@ import java.util.List;
 @Service
 public class StudentService {
 
-    public List<Student> createStudents(List<Student> newStudents)
+    private final StudentRepository repository;
+
+    public StudentService(StudentRepository repository) {
+        this.repository = repository;
+    }
+
+    public List<Student> createStudents(List<Student> newStudentsList)
     {
-        throw new UnsupportedOperationException("Not implemented");
+        return (repository.saveStudents(newStudentsList));
     }
 }
