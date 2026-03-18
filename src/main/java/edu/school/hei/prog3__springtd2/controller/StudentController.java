@@ -2,6 +2,8 @@ package edu.school.hei.prog3__springtd2.controller;
 
 import edu.school.hei.prog3__springtd2.entity.Student;
 import edu.school.hei.prog3__springtd2.service.StudentService;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -18,8 +20,14 @@ public class StudentController {
     }
 
     @PostMapping("/students")
-    public List<Student> createStudents(@RequestBody List<Student> newStudentsList)
+    public ResponseEntity<List<Student>> createStudents(@RequestBody List<Student> newStudentsList)
     {
-        return (service.createStudents(newStudentsList));
+        try{
+            return (ResponseEntity.status(HttpStatus.CREATED)
+                    .body(service.createStudents(newStudentsList)));
+        } catch (RuntimeException e) {
+            return (ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body(null));
+        }
     }
 }
