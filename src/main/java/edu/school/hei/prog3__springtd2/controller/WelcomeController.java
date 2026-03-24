@@ -10,11 +10,11 @@ import org.springframework.web.bind.annotation.RestController;
 public class WelcomeController {
 
     @GetMapping(value = "/welcome")
-    public ResponseEntity<String> welcome(@RequestParam String name){
+    public ResponseEntity<String> welcome(@RequestParam(required = false) String name){
         String template = "Welcome %s";
         if (name == null || name.isEmpty())
             return (ResponseEntity.status(HttpStatus.BAD_REQUEST)
-                    .body(null));
+                    .body("Missing name parameter"));
         return (ResponseEntity.status(HttpStatus.OK)
                 .header("Content-Type", "text/plain")
                 .body(template.formatted(name)));
