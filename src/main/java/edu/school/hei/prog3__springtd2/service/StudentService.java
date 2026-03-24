@@ -5,7 +5,6 @@ import edu.school.hei.prog3__springtd2.repository.StudentRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 public class StudentService {
@@ -22,5 +21,10 @@ public class StudentService {
                 .stream()
                 .map(Student::getFirstName)
                 .toList());
+    }
+
+    public List<String> getAllStudentsName()
+    {
+        throw new UnsupportedOperationException("Not implemented");
     }
 }

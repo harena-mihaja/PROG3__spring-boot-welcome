@@ -24,5 +24,10 @@ public class StudentController {
         return (service.createStudents(newStudentsList));
     }
 
+    @GetMapping
+    public List<String> getAllStudentsName()
+    {
+        throw new UnsupportedOperationException("Not implemented");
+    }
 
 }
