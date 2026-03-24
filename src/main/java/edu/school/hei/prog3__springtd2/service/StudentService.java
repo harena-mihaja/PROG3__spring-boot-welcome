@@ -5,6 +5,7 @@ import edu.school.hei.prog3__springtd2.repository.StudentRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class StudentService {
@@ -15,8 +16,11 @@ public class StudentService {
         this.repository = repository;
     }
 
-    public List<Student> createStudents(List<Student> newStudentsList)
+    public List<String> createStudents(List<Student> newStudentsList)
     {
-        return (repository.saveStudents(newStudentsList));
+        return (repository.saveStudents(newStudentsList)
+                .stream()
+                .map(Student::getFirstName)
+                .toList());
     }
 }
