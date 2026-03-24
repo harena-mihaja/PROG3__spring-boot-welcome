@@ -1,6 +1,7 @@
 package edu.school.hei.prog3__springtd2.controller;
 
 import edu.school.hei.prog3__springtd2.entity.Student;
+import edu.school.hei.prog3__springtd2.entity.StudentError;
 import edu.school.hei.prog3__springtd2.service.StudentService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,14 +21,17 @@ public class StudentController {
     }
 
     @PostMapping("/students")
-    public ResponseEntity<List<Student>> createStudents(@RequestBody List<Student> newStudentsList)
+    public ResponseEntity<?> createStudents(@RequestBody List<Student> newStudentsList)
     {
         try{
             return (ResponseEntity.status(HttpStatus.CREATED)
                     .body(service.createStudents(newStudentsList)));
         } catch (RuntimeException e) {
             return (ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-                    .body(null));
+                    .body(StudentError.builder()
+                            .statusCode(500)
+                            .message(e.getMessage())
+                            .build()));
         }
     }
 }
