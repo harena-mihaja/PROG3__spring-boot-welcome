@@ -2,10 +2,7 @@ package edu.school.hei.prog3__springtd2.controller;
 
 import edu.school.hei.prog3__springtd2.entity.Student;
 import edu.school.hei.prog3__springtd2.service.StudentService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -24,10 +21,13 @@ public class StudentController {
         return (service.createStudents(newStudentsList));
     }
 
-    @GetMapping
-    public List<String> getAllStudentsName()
+    @GetMapping("/students")
+    public String getAllStudentsName(@RequestHeader("Accept") String format)
     {
-        throw new UnsupportedOperationException("Not implemented");
+        if (format.toLowerCase().contains("text/plain"))
+            return (service.getAllStudentsName());
+        else
+            return ("Format not supported");
     }
 
 }
