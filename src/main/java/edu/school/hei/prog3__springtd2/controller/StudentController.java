@@ -33,13 +33,16 @@ public class StudentController {
         }
     }
     @GetMapping("/students")
-    public ResponseEntity<List<Student>> getAllStudents(@RequestHeader("Accept") String accept)
+    public ResponseEntity<?> getAllStudents(@RequestHeader(name = "Accept", required = false) String accept)
     {
         if (accept == null)
-            return (ResponseEntity.badRequest().build());
+            return (ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                    .body("Accept header can not be null"));
         if (!accept.equalsIgnoreCase("application/json"))
-            return (ResponseEntity.status(501).build());
-        return (ResponseEntity.ok(service.getAllStudents()));
+            return (ResponseEntity.status(HttpStatus.NOT_IMPLEMENTED)
+                    .body("Format not supported"));
+        return (ResponseEntity.status(HttpStatus.OK)
+                    .body(service.getAllStudents()));
 
     }
 }
