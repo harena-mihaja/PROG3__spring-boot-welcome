@@ -20,6 +20,7 @@ public class StudentService {
         checkForValideStudents(newStudentsList);
         return (repository.saveStudents(newStudentsList));
     }
+
     private void checkForValideStudents(List<Student> studentList)
     {
         for (Student student : studentList)
@@ -33,5 +34,10 @@ public class StudentService {
             if (student.getAge() == null || student.getAge() == 0)
                 throw new IllegalArgumentException("Student's age can not be null or 0");
         }
+    }
+
+    public List<Student> getAllStudents()
+    {
+        throw new UnsupportedOperationException("Not implemented");
     }
 }

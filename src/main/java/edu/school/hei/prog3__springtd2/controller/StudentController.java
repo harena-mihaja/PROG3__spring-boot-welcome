@@ -5,9 +5,7 @@ import edu.school.hei.prog3__springtd2.entity.StudentError;
 import edu.school.hei.prog3__springtd2.service.StudentService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -33,5 +31,10 @@ public class StudentController {
                             .message(e.getMessage())
                             .build()));
         }
+    }
+    @GetMapping("/students")
+    public ResponseEntity<List<Student>> getAllStudents(@RequestHeader("Accept") String acceptedFormat)
+    {
+        throw new UnsupportedOperationException("Not implemented");
     }
 }
