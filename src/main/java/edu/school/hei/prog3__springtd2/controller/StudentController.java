@@ -33,11 +33,11 @@ public class StudentController {
         }
     }
     @GetMapping("/students")
-    public ResponseEntity<List<Student>> getAllStudents(@RequestHeader("Accept") String acceptedFormat)
+    public ResponseEntity<List<Student>> getAllStudents(@RequestHeader("Accept") String accept)
     {
-        if (acceptedFormat == null)
+        if (accept == null)
             return (ResponseEntity.badRequest().build());
-        if (!acceptedFormat.equalsIgnoreCase("application/json"))
+        if (!accept.equalsIgnoreCase("application/json"))
             return (ResponseEntity.status(501).build());
         return (ResponseEntity.ok(service.getAllStudents()));
 
