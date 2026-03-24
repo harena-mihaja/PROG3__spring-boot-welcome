@@ -38,6 +38,6 @@ public class StudentService {
 
     public List<Student> getAllStudents()
     {
-        throw new UnsupportedOperationException("Not implemented");
+        return (repository.findAllStudents());
     }
 }

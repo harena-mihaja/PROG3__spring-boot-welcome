@@ -35,6 +35,11 @@ public class StudentController {
     @GetMapping("/students")
     public ResponseEntity<List<Student>> getAllStudents(@RequestHeader("Accept") String acceptedFormat)
     {
-        throw new UnsupportedOperationException("Not implemented");
+        if (acceptedFormat == null)
+            return (ResponseEntity.badRequest().build());
+        if (!acceptedFormat.equalsIgnoreCase("application/json"))
+            return (ResponseEntity.status(501).build());
+        return (ResponseEntity.ok(service.getAllStudents()));
+
     }
 }
