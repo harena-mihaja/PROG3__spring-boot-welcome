@@ -4,8 +4,6 @@ import lombok.*;
 
 @Data
 @Builder
-@AllArgsConstructor
-@NoArgsConstructor
 public class StudentError {
     private Integer statusCode;
     private String message;
