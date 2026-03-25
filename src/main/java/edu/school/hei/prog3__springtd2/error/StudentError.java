@@ -1,10 +1,10 @@
-package edu.school.hei.prog3__springtd2.entity;
+package edu.school.hei.prog3__springtd2.error;
 
 import lombok.*;
 
 @Data
 @Builder
 public class StudentError {
-    private Integer statusCode;
+    private Integer code;
     private String message;
 }

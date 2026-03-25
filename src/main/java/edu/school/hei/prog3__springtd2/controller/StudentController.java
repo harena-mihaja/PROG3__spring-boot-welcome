@@ -1,7 +1,8 @@
 package edu.school.hei.prog3__springtd2.controller;
 
 import edu.school.hei.prog3__springtd2.entity.Student;
-import edu.school.hei.prog3__springtd2.entity.StudentError;
+import edu.school.hei.prog3__springtd2.error.StudentError;
+import edu.school.hei.prog3__springtd2.exception.BadRequestException;
 import edu.school.hei.prog3__springtd2.service.StudentService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -24,10 +25,10 @@ public class StudentController {
         try{
             return (ResponseEntity.status(HttpStatus.CREATED)
                     .body(service.createStudents(newStudentsList)));
-        } catch (RuntimeException e) {
-            return (ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+        } catch (BadRequestException e) {
+            return (ResponseEntity.status(HttpStatus.BAD_REQUEST)
                     .body(StudentError.builder()
-                            .statusCode(500)
+                            .code(400)
                             .message(e.getMessage())
                             .build()));
         }
