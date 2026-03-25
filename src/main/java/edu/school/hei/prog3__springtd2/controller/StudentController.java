@@ -38,10 +38,14 @@ public class StudentController {
     {
         if (accept == null)
             return (ResponseEntity.status(HttpStatus.BAD_REQUEST)
-                    .body("Accept header can not be null"));
+                    .body(StudentError.builder()
+                            .code(400)
+                            .message("Accept header can not be null")));
         if (!accept.equalsIgnoreCase("application/json"))
             return (ResponseEntity.status(HttpStatus.NOT_IMPLEMENTED)
-                    .body("Format not supported"));
+                    .body(StudentError.builder()
+                            .code(501)
+                            .message("Format not supported")));
         return (ResponseEntity.status(HttpStatus.OK)
                     .body(service.getAllStudents()));
 
