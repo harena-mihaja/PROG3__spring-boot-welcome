@@ -31,6 +31,12 @@ public class StudentController {
                             .code(400)
                             .message(e.getMessage())
                             .build()));
+        } catch (RuntimeException e) {
+            return (ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body(StudentError.builder()
+                            .code(500)
+                            .message(e.getMessage())
+                            .build()));
         }
     }
     @GetMapping("/students")
